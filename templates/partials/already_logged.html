@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block body %}
+<style>
+    .loginAlr_content{
+        width: 100%;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        margin-top: 50px;
+        background-color: white;
+    }
+    .loginAlr_content h2{
+        border-radius: 20px;
+        background-color: #ffffff;
+        font-size: 30px;
+        text-align: center;
+        padding: 50px;
+        padding-bottom: 50px;
+        z-index: 2;
+        border: 15px solid #00D1B2;
+        font-weight: 700;
+        
+    }
+    #shadow{
+        background-color: white;
+        position: absolute;
+        top: 10px;
+        z-index: 0;
+        width: 100%;
+        text-align: center;
+    }
+    @media screen and (max-width:1000px){
+        .loginAlr_content h2{
+            font-size: 20px;
+           
+        }
+    }
+</style>
+{% include 'partials/navLoggedIn.html' %}
+{% if type == 'leader' %}
+<div class="loginAlr_content">
+    <h2>Yeah 😇<br> You are already logged in<br>
+        <a class='button is-primary mt-2' href="/welcome">Back</a>
+    </h2>
+</div>
+
+{% elif type == 'follower' %}
+
+<div class="loginAlr_content">
+    <h2>Yeah 😇<br> You are already logged in<br>
+        <a class='button is-primary mt-2' href="/follower/tasks/{{ session['CURRENT_USER_ID']}}">Back</a>
+    </h2>
+</div>
+
+{% endif %}
+{% endblock  %}

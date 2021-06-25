@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block body %}
+{% include 'partials/navLoggedIn.html' %}
+
+<div style="width: 100%; display: flex; align-items: center; flex-direction: column; margin-top: 50px;">
+  <h3 class="card" style="width: 50%; display: flex;justify-content: center; padding: 20px;">Permanently delete "{{ people.name }}"</h3>
+  <form action="/people/delete/{{ people.id }}" method="POST">
+  <input class='button is-warning' style=" color:white;background: green ;margin: 10px;" type="submit" name='verify' class="verify" value="YES">
+  <input class='button is-danger' style="margin: 10px; margin-left:0px;"  type="submit" name='verify' class="verify" value="NO">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+</form>
+</div>
+{% endblock %}

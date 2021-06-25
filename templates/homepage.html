@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% block head %} 
+<title>
+Ramind 
+</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Staatliches&display=swap" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<style>
+    body{
+        background-color: white;
+        min-height: 100px;
+        
+    }
+    #homepage{
+        /* margin-top: 120px; */
+        font-size: 50px;
+        /* color: cornflowerblue; */
+        flex-direction: column;
+        text-align: center;
+        color: #00D1B2;
+        font-family: Staatliches;
+        width: 100%;
+        height: 400px;
+        display: flex;
+        align-items: center; 
+        justify-content: center;
+        background-color: white;
+    }
+    #about{
+        width: 100%;
+        height: 400px;
+        background-color:cornflowerblue;
+        margin-top: 30px;
+    }
+    #header{
+        display: flex;
+        margin-top: 5px;
+        font-size: 100px;
+        /* color: cornflowerblue; */
+        text-align: center;
+        color: white;
+        font-family: Staatliches;
+        width: 100%;
+        height: 400px;
+        display: flex;
+        align-items: center; 
+        justify-content: center;
+
+    }
+    .button{
+        font-size: 25px;
+        
+    }
+    #last{
+        background-color: #00D1B2;
+        display: flex;
+        margin-top: 5px;
+        font-size: 100px;
+        /* color: cornflowerblue; */
+        text-align: center;
+        color: white;
+        font-family: Staatliches;
+        width: 100%;
+        height: 400px;
+        display: flex;
+        align-items: center; 
+        justify-content: center;
+    }
+    #last2{
+        background-color: cornflowerblue;
+        display: flex;
+       
+        font-size: 100px;
+        /* color: cornflowerblue; */
+        text-align: center;
+        color:#F5F5F5;
+        font-family: Staatliches;
+        width: 100%;
+        height: 400px;
+        display: flex;
+        align-items: center; 
+        justify-content: center;
+        margin-bottom: 5px;
+    }
+    .ball{
+        width: 50px;
+        height: 50px;
+        border-radius: 100px;
+        background-color: red;
+    }
+
+    footer{
+        margin-top: 0px;
+        
+    }
+
+    @media screen and (max-width: 1000px) {
+        #homepage, #header, #about, #last, #last2{
+            font-size: 50px;
+        }
+        #about{
+            padding: 10px;
+        }
+    }
+</style>
+
+{% include 'partials/navLoggedOut.html' %}
+
+
+<div id="about">
+    <div id="header">
+        Task Management📗 made easy 
+    </div>
+</div>
+<div id="homepage">
+    Your Team deserves  <span style="color: cornflowerblue; font-size: 150px;" class="bounce">better</span>
+    <div id="buttons">
+        <a class="button is-primary" href="/ask" >Try Ramind Now</a>
+        <a class="button is-light" href="/ask" style="color: #00D1B2; font-weight: 500;" >Login</a>
+    </div>
+ </div>
+<div id="last">
+   Be a Leader🤴🏻 or a Follower👨‍👨‍👦‍👦
+</div>
+
+<div id="last2" style="">
+    Start your dream team🧑‍🤝‍🧑 today
+</div>
+<div id="homepage">
+    Wanna Suport us to be<span style="color: cornflowerblue; font-size: 150px;" class="bounce">better</span>
+    <div id="buttons">
+        <a class="button" href="/" style="background-color: orange;">Patreon</a>
+        <a class="button is-warning" href="/" style=" font-weight: 500;">Others</a>
+    </div>
+ </div>
+
+{% endblock %}

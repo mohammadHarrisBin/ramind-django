@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block body %}
+{% include 'partials/navLoggedIn.html' %}
+<div class="container is-max-widescreen" style="
+width: 100%;
+display: flex;
+justify-content: center;
+border-radius: 50px;
+">
+
+<form action="/people/new" method="POST" enctype="multipart/form-data" encoding='utf-8' style="width: 340px;
+background-color: white;
+border-radius: 20px;
+padding: 20px;
+margin-top: 10px;
+width: 35%;
+
+">
+    <h1 style="text-align: center;font-size:20px; font-family: arial;font-weight: 700;background:#00D1B2;;
+    width: 100%; background-color: #00D1B2;
+    padding: 30px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: white;
+    border: 10px solid #00D1B2;
+    ">👧 New Follower 🧒 </h1><br>
+    <div class="field">
+        <label for="name" class="label">Name</label>
+        <div class="control">
+            <input class="input" type="text"  name="name"  placeholder="name...">
+        </div>
+    </div>
+    <div style="display: flex;">
+    <div class="field">
+        <label for="race" class="label">Race</label>
+        <div class="control">
+            <input class='input' type="text"  name="race"  placeholder="race...">    
+         </div>
+    </div>
+    <div class="field" style="margin-left: 10px;">
+        <label for="age" class="label">Age</label>
+        <div class="control" style="width: 80%;">
+            <input class='input' type="number" name="age"  placeholder="age">    
+         </div>
+    </div>
+    </div>
+    <div class="field">
+        <label for="occ" class="label">Occupation</label>
+        <div class="control">
+            <input class='input' type="text"  name="occ"  placeholder="occ">    
+         </div>
+    </div>
+    <div class="field">
+        <label for="status" class="label">Status</label>
+        <div class="control">
+            <input class='input' type="text"  name="status"  placeholder="status...">    
+         </div>
+    </div>
+    <label for="category" class="label">Category</label>
+    <div style="display: flex;">
+    <div class="select">
+        <select name="category" id="category">
+            <option value="Family">Family</option>
+            <option value="Friend">Friend</option>
+            <option value="Connections">Connections</option>
+        </select>
+    </div>
+    <input  name='others' type="text" style="margin-left: 10px;" class="input" placeholder="others...">
+    </div>
+    
+    <label for="gender" class="label" style="margin-top: 10px;">Gender</label>
+    <div class="select">
+        <select name="gender" id="gender">
+            <option value="Cannot Specify">Cannot Specify</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+    </div>
+<br>
+      
+      
+    
+   <br><br>
+
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <div class="field">
+        <div class="control" style="display: flex;justify-content: center ;" >
+            <input type="submit" value="Save" class="button is-primary" style="margin-right: 5px;">
+            <a href="/welcome" class="button is-light">back</a> 
+        </div>
+         
+    </div>
+</form>    
+</div>
+{% endblock %}

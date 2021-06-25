@@ -1,0 +1,27 @@
+
+
+{% if session.get('CURRENT_USER_ID') %}
+
+<div id="nav" class="container is-size-1-mobile" style="padding-top: 15px; display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+    <a href='/' style="font-size: 30px; font-weight: 800; color: #00D1B2;">Ramind</a>
+    {% if session.get('ACCOUNT_TYPE') == 'leader' %}
+    <div style="display: flex; width: 220px;  justify-content: space-between; ">
+    <a href='/already_login' style="font-size: 20px; font-weight: 700; word-spacing: 0em;display: flex; " class="button is-warning">Profile</a>
+    <a href='/logout' style="font-size: 20px; font-weight: 700; word-spacing: 0em;display: flex; " class="button is-danger">Logout</a>
+    </div>
+    {% elif session.get('ACCOUNT_TYPE') == 'follower' %}
+    <div style="display: flex; width: 220px;  justify-content: space-between; ">
+    <a href='/follower/already_login' style="font-size: 20px; font-weight: 700; word-spacing: 0em;display: flex; " class="button is-warning">Profile</a>
+    <a href='/logout' style="font-size: 20px; font-weight: 700; word-spacing: 0em;display: flex; " class="button is-danger">Logout</a>
+    </div>
+    {% endif %}
+
+</div>
+
+{% else %}
+<div id="nav" class="container is-size-1-mobile" style="padding-top: 15px; display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+    <a href='/' style="font-size: 30px; font-weight: 800; color: #00D1B2;">Ramind</a>
+    
+</div>
+
+{% endif %}

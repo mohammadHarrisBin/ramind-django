@@ -1,0 +1,79 @@
+
+{% extends 'base.html' %}
+
+{% block body %}
+{% include 'partials/navLoggedOut.html' %}
+<style>
+  body{
+      background-color: white;
+  }
+</style>
+<div class="container is-max-widescreen" style="width: 100%; min-height: 600px; display: flex; justify-content: center; align-items: center;">
+<form action="/register" method="POST" style="width: 40%;">
+  {{ form.csrf_token }}
+  {% if error %}
+        <article class="message is-danger" style="width: 100%;">
+            <div class="message-header">
+              <p>Danger</p>
+              <p>😡</p>
+            </div>
+            <div class="message-body">
+             {{ error }}
+            </div>
+          </article>
+  {% endif %}
+<h2 style="font-size: 30px; font-weight: 800; text-align: center;">Register🥳</h2>
+<br>
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+<div class="field">
+  <label for="name" class="label">Name</label>
+  <div class="control">
+    {{ form.name(class_='input') }}
+  </div>
+</div>
+<div class="field">
+    <label for="email" class="label">Email</label>
+    <div class="control">
+      {{ form.email(class_='input') }}    
+    </div>
+  </div>
+  <div class="field">
+    <label for="password" class="label">Password</label>
+    <div class="control">
+      {{ form.password(class_='input') }}    
+    </div>
+  </div>
+  <div class="field">
+    <label for="name" class="label">Repeat Password</label>
+    <div class="control">
+      {{ form.r_password(class_='input') }}
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <label class="checkbox">
+        {{ form.tau(class_ = "checkbox") }}
+        I agree to the <a href="/Terms&Conditions">terms and conditions</a>
+      </label>
+    </div>
+  </div>
+
+  <div class="field is-grouped">
+    <p class="control">
+        <input class="button is-primary" type="submit" name="submit" id="submit">
+    </p>
+    <p class="control">
+        <a class='button is-light' href="/leader/login">login?</a>
+    </p>
+  </div>
+
+  
+ 
+
+
+</form>
+</div>
+
+
+{% endblock %}

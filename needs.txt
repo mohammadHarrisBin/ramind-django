@@ -1,0 +1,6 @@
+add ons:
+1. Proper messages for registration, login, crud task, crud people
+2. Implementation of cookies when login
+3. Implementation for images(profile banner, task GIF)
+4. Can only delete person when there are no task left
+5. Clear task function

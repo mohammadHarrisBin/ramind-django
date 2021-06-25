@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% block body %}
+{% include 'partials/navLoggedInFollowers.html' %}
+<style>
+    .level-item{
+      opacity: 70%;
+      font-size: 25px;
+      margin-left: 10px;
+    }
+    .level-item:hover{
+      opacity: 100%;
+    }
+</style>
+<div style="display: flex; justify-content: center;">
+<div class='box' style="margin:10px;display:flex;justify-content: center; width: 250px; border: 2px solid white; background-color: #00D1B2; opacity:100%; font-size: 20px;">
+    <strong style=" color: white; text-align: center;">"{{ people.name }}" Tasks</strong><br>
+</div>
+</div>
+<h1 style="display: flex; justify-content: center;">
+    {% if typeTask == "incompleted" %}
+    <a id='incompleted' href="/follower/tasks/{{ people.id }}/incompleted" class="{{ className[1] }}" style="margin-right: 10px; border: 2px solid white;">Incompleted</a>
+    <a id='completed' href="/follower/tasks/{{ people.id }}" class="{{ className[0] }}" style="border: 2px solid white;">Completed</a>
+    {% else %}
+    <a id='incompleted' href="/follower/tasks/{{ people.id }}/incompleted" class="{{ className[0] }}" style="margin-right: 10px; border: 2px solid white;">Incompleted</a>
+    <a id='completed' href="/follower/tasks/{{ people.id }}" class="{{ className[1] }}" style="border: 2px solid white;">Completed</a>
+    {% endif %}
+</h1>
+
+
+<div class="container is-max-widescreen" style="
+width: 100%;
+display: flex;
+flex-direction: column-reverse;
+border-radius: 50px;
+align-items: center;
+margin-top: 50px;"
+>
+
+
+{% if tasks.first().title %}
+{%for task in tasks  %}
+<div  class='box' style="margin: 10px; font-size: 20px; width: 60%;">
+    <article class="media">
+      <div class="media-left">
+        <figure class="image is-64x64">
+          <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+        </figure>
+      </div>
+      <div class="media-content">
+        <div class="content">
+          <p>
+            <strong>{{ task.title }}</strong> <small><a href="#">@{{ Users.query.get(task.assigned_by).name }}</a></small>
+            <br>
+           {{ task.description }}
+          </p>
+        </div>
+        <div style="width: 100%; display: flex; justify-content: flex-end;">
+        <nav class="level is-mobile">
+          <div class="level-left">
+            {% if task.status == 'Incompleted' %}
+
+
+            {% if task.needHelp == True %}
+            
+            <div id="reason" style="display: flex;margin-top: -30px; justify-content: flex-start; ">
+              <form action="/reason/{{ task.id }}" method="post" style="width: 150%;  ">
+                 <label for="reason" class="label" style=" font-size: 17px;">Reason</label>
+                <input type="text" name="reason" id="reason" class="input" placeholder="Reason for assistance..." value="{{ task.reasonForHelp }}" onchange="this.form.submit()">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              </form>
+            </div>
+            
+            {% endif %}
+
+
+
+            <a href="/follower/{{ task.id }}/tasks/finished" class="level-item" aria-label="done">
+                    <span class="icon has-text-success">
+                      <i id="done" class="fas fa-check-square"></i>
+                    </span>
+            </a>
+                      {% if task.needHelp == 0 %}
+            <a id="help" href="/follower/{{ task.id }}/tasks/help" class="level-item" aria-label="help">
+                <span class="fas fa-hands-helping">
+                  <i id='help'class="fas fa-window-close"></i>
+                </span>
+            </a>
+                      {% else %}
+            <a href="/follower/{{ task.id }}/tasks/help" class="level-item" aria-label="help">
+              <i class="fas fa-window-close" style="color: red;"></i>
+            </a>
+        
+            
+            {% endif %}
+            
+           
+            {% elif task.status == 'Completed' %}
+
+            
+            <a  href="/follower/{{ task.id }}/tasks/restore" class="level-item" aria-label="back" id="back">
+            
+                <span class="icon has-text-success">
+                    <i class="far fa-window-restore"></i>
+                </span>
+                <!-- <input type="text" name="reason" id="reason"> -->
+            </a>  
+            {% endif %}
+
+          </div>
+        </nav>
+        
+        </div>
+      </div>
+      
+    </article>
+  </div>
+
+  <!-- <script>
+    var help = document.getElementById('help')
+    var input = document.getElementById('reason')
+    code = ''
+    help.addEventListener('click',()=>{
+       code
+    })
+  </script> -->
+{% endfor %}
+
+{% elif tasks %}
+
+<div class="box" style="margin-top: 50px;">👍 Congratulations, they are no task for you</div>
+
+{% endif %}
+
+
+</div>
+<script src="{{ url_for('static',filename='scripts/getTask.js') }}"></script>
+{% endblock %}

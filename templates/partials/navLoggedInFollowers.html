@@ -1,0 +1,86 @@
+<style>
+    #nav{
+        display: flex;
+        justify-content: space-between;
+        z-index: 3;
+    }
+    #log_btn{
+        border: none;
+        outline: none;
+    }
+    #log_btn:hover{
+        opacity: 88%;
+    }
+    /* .d_item{
+        visibility: hidden;
+    } */
+
+    #dropdown-items{
+        visibility: hidden;
+    }
+</style>
+<div id="nav" class="container is-size-1-mobile" style="padding-top: 15px; margin-bottom: 100px;">
+    <div>
+    <a href='/' style="font-size: 30px; font-weight: 800; color: #ffffff;">Ramind</a>
+
+    </div>
+    <form method="POST" action="/logout">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        
+        <div class="field is-grouped">
+            <p class="control mt-10px">
+                <!-- <div style="display: flex;">
+                <div style="display: flex; flex-direction: column; align-items: center; ">
+                <a id='plus' class="button" style="font-weight:450; font-size: 15px;font-weight: 500; color:#00D1B2 ; width: 55px;">+</a>
+                <div id='dropdown-items' style="background-color: lightseagreen; display:flex; flex-direction:column; width:100px;align-items: center; justify-content: center; padding:5px; margin-top: 10px; border-radius: 10px; padding-bottom:15px;">
+                <a href="/people/new" class="button d_item" style="font-weight:450; font-size: 15px;font-weight: 500; color:#00D1B2 ; margin-top: 10px; width: 70px;">+ Person</a>
+                <a href="/task/new" class="button d_item" style="font-weight:450; font-size: 15px;font-weight: 500; color:#00D1B2 ; margin-top: 5px;width: 70px;">+ Task</a>
+                </div>     -->
+            </div>
+                <input id='log_btn' class='button is-family-sans-serif' style="font-weight:450; font-size: 15px;font-weight: 500; color:#00D1B2 ;" type="submit" name="logout" id="Logout" value="logout">
+                </div>
+            </p>
+          </div>
+       
+    </form>
+</div>
+<!-- <script>
+    var plus_btn = document.getElementById('plus').addEventListener('mouseover',()=>{
+        var dropdown_items = document.getElementById('dropdown-items');
+        dropdown_items.style.visibility = 'visible'
+    })
+
+
+    var peopleBtn = document.getElementsByClassName('d_item')[0]
+    peopleBtn.addEventListener('mouseover',()=>{
+        var dropdown_items = document.getElementById('dropdown-items');
+        dropdown_items.style.visibility = 'visible'
+
+    })
+    peopleBtn.addEventListener('mouseout',()=>{
+        var dropdown_items = document.getElementById('dropdown-items');
+        dropdown_items.style.visibility = 'hidden'
+
+    })
+    var taskBtn = document.getElementsByClassName('d_item')[1]
+    taskBtn.addEventListener('mouseover',()=>{
+        var dropdown_items = document.getElementById('dropdown-items');
+        dropdown_items.style.visibility = 'visible'
+
+    })
+    taskBtn.addEventListener('mouseout',()=>{
+        var dropdown_items = document.getElementById('dropdown-items');
+        dropdown_items.style.visibility = 'hidden'
+
+    })
+
+    var dropdown_items = document.getElementById('dropdown-items').addEventListener('mouseover',()=>{
+        var dropdown_items = document.getElementById('dropdown-items');
+        dropdown_items.style.visibility = 'visible'
+    })
+    var dropdown_items = document.getElementById('dropdown-items').addEventListener('mouseout',()=>{
+        var dropdown_items = document.getElementById('dropdown-items');
+        dropdown_items.style.visibility = 'hidden'
+    }) -->
+
+</script>

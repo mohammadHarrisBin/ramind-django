@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block body %}
+{% include 'partials/navLoggedIn.html' %} 
+
+<style>
+
+  #edit_card{
+    width: 25%; margin: 10px;height: 500px; border-radius: 20px; margin-top: 30px;
+  }
+  @media screen and (max-width:1000px){
+    #edit_container {
+     flex-wrap: wrap;
+   } 
+    #edit_card{
+      background-color: white;
+      width: 85%
+    }
+   
+  }
+</style>
+
+<div id='edit_container' style="width: 100%; display: flex;flex-direction: row-reverse; justify-content: center ;margin-top: 0px; ">
+<div  id="edit_card" class="card" style="height: 200px; margin-top: 65px; border-left: 5px solid royalblue;border-top: 5px solid lightcoral;font-weight:700; font-size: 25px;">
+    <div class="card-content">
+      <div class="media">
+        <div class="media-content">
+          Followers: <a href="/welcome" >{{ followers }}</a> <br>
+          Total Tasks Given: {{ tasks }}
+
+        </div>
+      </div>
+  
+      <div class="content" style="margin-top: -16px; font-size: 15px; font-weight: 600; padding-left: 10px;">
+        Name: <a href="#">{{ people.name }}</a><br>
+        Email: <a href="#">{{ people.email }}</a><br>
+        Access Code: <a href="#">{{ people.access_code }}</a><br>
+        
+    
+      </div>
+    </div>
+</div>
+
+
+<div>
+    <div class="container is-max-widescreen" style="
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+    
+    ">
+    
+
+    <form action="/profile/{{ people.id }}" method="POST" enctype="multipart/form-data" encoding='utf-8' style="width: 390px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 100px;
+    margin-top: 50px;
+    
+    ">
+        <h1 style="text-align: center;font-size:20px; font-family: arial;font-weight: 700;background:#00D1B2;;
+        width: 100%; background-color: #00D1B2;
+        padding: 30px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        color: white;
+        border: 10px solid #00D1B2;
+        ">👧 Update {{ people.name }} 🧒 </h1><br>
+        <label for="which" class="label">Choose changes</label>
+        <div class="select" style="margin-bottom: 10px;">
+            <select name="choose" id="choose" onchange="doSomething()">
+               
+                <option value="name" id="name">Name</option>
+                <option value="email" id="age">Email</option>
+                <option selected>None</option>
+
+            </select>
+        </div>
+        <div id='mainForm'>
+          <h3 style=" color:red; margin-bottom:5px">*Please select an option to update changes</h3>
+        </div>
+        <script src="{{ url_for('static',filename='scripts/dropdownedit.js') }}"></script>
+  
+    
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    
+        
+        <div class="field">
+            <div class="control">
+                <input name='submit' type="submit" value="Update" class="button is-primary" value='real'>
+                <a href="/welcome" class="button is-light">back</a> 
+            </div>
+        </div>
+    </form>
+    </div>     
+</div>
+
+</div>
+
+{% endblock %}

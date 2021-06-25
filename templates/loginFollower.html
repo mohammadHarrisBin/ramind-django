@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block body %}
+{% include 'partials/navLoggedOut.html' %}
+<style>
+body{
+    background-color: white;
+}
+</style>
+<div style="display: flex;flex-direction: column; align-items: center; margin-top: 200px; ">
+    <h2 style="font-size: 30px; font-weight: 800; text-align: center; margin-bottom: 30px;">Follower👨‍👨‍👦‍👦</h2>
+    <form action="{% if peoples %}/follower/tasks{% else %}/follower/login{% endif %}" method="post">
+        <div class="field">
+            {% if code %}
+            <div style="display: flex;">
+            <div class="select">
+                <select name="choose" id="choose" class="select" style="margin-right: 10px;">
+
+                    <option value="none" selected>None</option>
+                   {% for people in peoples %}
+                   <option value="{{ people.id }}">{{ people.name }}</option>
+                   {% endfor %}
+                </select>
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" >
+            </div>
+            
+            <input type="submit" class="button is-primary" name='submit_follower' value="That's Me">
+            </div>
+            {% else %}
+            <label for="code" class="label">Enter Code</label>
+            <div style="display: flex;">
+            <div class="control" style="margin-right: 10px;">
+                {{ form.code(class_="input") }}
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" >
+            </div>
+            <button type="submit" class="button is-primary">Enter</button>
+        </div>
+        <p style="color: red; font-size: 15px; margin-top: 5px;">{% with messages = get_flashed_messages() %}
+           {% if messages %}
+              {% for message in messages %}
+                {{ message }}
+              {% endfor %}
+           {% endif %}
+        {% endwith %}
+
+        </p>
+            {% endif %}
+        </div>
+    </form>
+</div>
+
+
+
+{% endblock %}

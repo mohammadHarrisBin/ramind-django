@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block body %}
+{% include 'partials/navLoggedIn.html' %}
+<div class="container is-max-widescreen" style="
+width: 100%;
+display: flex;
+justify-content: center;
+border-radius: 50px;
+">
+
+<form action="/task/new" method="POST" enctype="multipart/form-data" encoding='utf-8' style="width: 340px;
+background-color: white;
+border-radius: 20px;
+padding: 20px;
+margin-top: 10px;
+width: 50%;
+
+">
+    <h1 style="text-align: center;font-size:20px; font-family: arial;font-weight: 700;background:#00D1B2;;
+    width: 100%; background-color: #00D1B2;
+    padding: 30px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: white;
+    border: 10px solid #00D1B2;
+    ">👩‍💻 New Task 👨‍🚒 </h1><br>
+    <div class="field">
+        <label for="title" class="label">Title</label>
+        <div class="control">
+            <input class="input" type="text"  name="title"  placeholder="title...">
+        </div>
+    </div>
+    <div class="field">
+        <label for="description" class="label">Description</label>
+        <div class="control">
+            <textarea class='textarea' type="text"  name="desc"  placeholder="description..." rows="4" cols="50"></textarea>
+         </div>
+    </div>
+
+    
+        <label for="people" class="label">Who</label>
+        <div class="field" style="display: flex;">
+        <div class="select">
+             <select name="choose" id="choose" class="select">
+                <option value="" selected disabled>None</option>
+                <option value="everyone">Everyone</option>
+                {% for people in peoples %}
+                <option value="{{ people.id }}">{{ people.name }}</option>
+                {% endfor %}
+             </select>
+         </div>
+    </div>
+    
+
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+ 
+    <div class="field" style="display: flex; justify-content: flex-end;">
+        <div class="control" style=" margin-top: 10px;">
+            <input type="submit" value="Save" class="button is-primary">
+            <a href="/welcome" class="button is-light">back</a> 
+        </div>
+         
+    </div>
+</form>    
+</div>
+{% endblock %}

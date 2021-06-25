@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block body %}
+{% include 'partials/navLoggedOut.html' %}
+<style>
+    body{
+        background-color: white;
+    }
+</style>
+
+<div class="container is-max-widescreen"
+    style="width: 100%; min-height: 600px; display: flex;flex-direction: column; justify-content: center; align-items: center;">
+    <form action="/leader/login" method="POST">
+
+        {{ form.csrf_token }}
+        {% if error %}
+        <article class="message is-danger" style="width: 100%;">
+            <div class="message-header">
+                <p>Danger</p>
+                <p>😡</p>
+            </div>
+            
+            <div class="message-body">
+                {{ error }}
+            </div>
+        </article>
+        {% endif %}
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <article class="message is-success" style="width: 100%;">
+            <div class="message-header">
+              <p>Congratulations</p>
+              <p>👏</p>
+            </div>
+            <div class="message-body">
+                <ul class=flashes>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            
+            </div>
+        </article>
+        {% endif %}
+        {% endwith %}
+        
+        <article class="message is-success" style="width: 100%;"></article>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+       
+        <h2 style="font-size: 30px; font-weight: 800; text-align: center;">Login🥳🤴🏻</h2>
+        <br>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="field">
+            {% if decision == 'leader' %}
+            <label for="name" class="label">Email</label>
+            <div class="control">
+                {{ form.email(class_="input") }}
+            </div>
+        </div>
+        <div class="field">
+            <label for="name" class="label">Password</label>
+            <div class="control">
+                {{ form.password(class_="input")}}
+            </div>
+
+        </div>
+        <div class="field is-grouped">
+            <p class="control">
+                <input id='btn' class="button is-primary" type="submit" name="submit" id="submit" value='Login'>
+            </p>
+            <p class="control">
+                <a class='button is-light' href="/register">Register Instead</a>
+            </p>
+            {% endif %}
+
+        </div>
+    </form>
+</div>
+
+
+{%endblock%}

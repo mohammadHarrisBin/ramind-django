@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block body %}
+{% include 'partials/navLoggedIn.html' %} 
+
+<style>
+  #edit_card{
+    width: 25%; margin: 10px;height: 500px; border-radius: 20px; margin-top: 30px;
+  }
+  @media screen and (max-width:1000px){
+    #edit_container {
+     flex-wrap: wrap;
+   } 
+    #edit_card{
+      background-color: white;
+      width: 85%
+    }
+   
+  }
+</style>
+
+<div id='edit_container' style="width: 100%; display: flex;flex-direction: row-reverse; justify-content: center ;margin-top: 0px; ">
+<div  id="edit_card" class="card">
+    <div class="card-image" >
+      <figure class="image is-4by3">
+        <img style="border-top-left-radius: 20px; border-top-right-radius: 20px;" src="/static/img/uploads/{{ people.banner_img }}" width=100 alt=" {{ people.banner_img  }}">
+      </figure>
+    </div>
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+            {% if people.gender == 'Male' %}
+            <div style="font-size: 35px; ; border-radius: 10px;text-align: center; padding: 1px; margin-top: -5px;"> 👦 </div>
+            {% elif people.gender == 'Female' %}
+            <div style="font-size: 35px; ; border-radius: 10px;text-align: center; padding: 1px; margin-top: -5px;"> 👧 </div>
+            {% else %}
+            <div style="font-size: 35px; ; border-radius: 10px;text-align: center; padding: 1px; margin-top: -5px;"> IDK </div>
+            
+            {% endif %}
+          </figure>
+        </div>
+        <div class="media-content">
+          <p class="title is-4">{{people.name}}  <span class="tag is-success">
+            {{ people.category }}
+          </span></p>
+          <p class="subtitle is-6">{{ people.age }} Years Old</p>
+        </div>
+      </div>
+  
+      <div class="content" style="margin-top: -16px; font-size: 15px; font-weight: 600; padding-left: 10px;">
+        Race: <a href="#">{{ people.race }}</a><br>
+        Status: <a href="#">{{ people.status }}</a><br>
+        <!-- Category: <a href="#">{{ people.category }}</a><br> -->
+        Occupation: <a href="#">{{ people.occupation }}</a><br>
+        <time datetime="2016-1-1">Date Added: <a href="#">{{ people.date_posted }}</a></time>
+      </div>
+    </div>
+</div>
+
+
+<div>
+    <div class="container is-max-widescreen" style="
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+    ">
+    
+
+    <form action="/people/edit/{{ people.id }}" method="POST" enctype="multipart/form-data" encoding='utf-8' style="width: 390px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 100px;
+    margin-top: 50px;
+    ">
+        <h1 style="text-align: center;font-size:20px; font-family: arial;font-weight: 700;background:#00D1B2;;
+        width: 100%; background-color: #00D1B2;
+        padding: 30px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        color: white;
+        border: 10px solid #00D1B2;
+        ">👧 Update {{ people.name }} 🧒 </h1><br>
+        <label for="which" class="label">Choose changes</label>
+        <div class="select" style="margin-bottom: 10px;">
+            <select name="choose" id="choose" onchange="doSomething()">
+                <option selected>None</option>
+                <option value="name" id="name">Name</option>
+                <option value="age" id="age">Age</option>
+                <option value="occ" id="occ">Occupation</option>
+                <option value="status" id="status">Status</option>
+                <option value="gender" id="gender">Gender</option>
+                <option value="race" id='race'>Race</option>
+                <option value="category" id="category">Category</option>
+                <option value="profile-pic" id="ppc">Banner Image</option>
+            </select>
+        </div>
+        <div id='mainForm'>
+          <h3 style=" color:red; margin-bottom:5px">*Please select an option to update changes</h3>
+        </div>
+        <script src="{{ url_for('static',filename='scripts/dropdownedit.js') }}"></script>
+  
+    
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    
+        
+        <div class="field">
+            <div class="control">
+                <input name='submit' type="submit" value="Update" class="button is-primary" value='real'>
+                <a href="/welcome" class="button is-light">back</a> 
+            </div>
+        </div>
+    </form>
+    </div>     
+</div>
+
+</div>
+
+{% endblock %}

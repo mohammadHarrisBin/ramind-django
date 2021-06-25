@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block body %}
+{% include 'partials/navLoggedOut.html' %}
+<style>
+body{
+    background-color: white;
+}
+#leaderBtn{
+    background: white;
+    color: black;
+}
+#leaderBtn:hover{
+    opacity: 80%;
+}
+</style>
+<div style="display: flex;flex-direction: column; align-items: center; margin-top: 200px; ">
+    <h2 style="font-size: 30px; font-weight: 800; text-align: center; margin-bottom: 3px;">Follower👨‍👨‍👦‍👦</h2>
+    <form action="/follower/login" method="post">
+        <div  style="display: flex; flex-direction: column; align-items: center;margin-top: 20px; background: cornflowerblue;" class='box'>
+            
+            <label for="code" class="label" style="font-size: 20px; color: white;">Sorry 😭, code does not exist</label>
+            <div style="display: flex;">
+            <div class="control" style="margin-right: 10px;">
+                
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" >
+            </div>
+            <div style="display: flex; flex-direction: row;">
+            <a href='/follower/login' type="submit" class="button is-primary" style=" margin-right: 10px;">Redeem Another Code</a>
+            <a id='leaderBtn' href="/register" type="submit" class="button is-primary">I am a Leader👨🏻‍✈️</a>
+            
+        
+        </div>
+        </div>
+    </form>
+</div>
+
+
+
+{% endblock %}
